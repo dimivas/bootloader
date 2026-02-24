@@ -152,7 +152,7 @@ impl DiskImageBuilder {
     }
 
     #[cfg(feature = "uefi")]
-    /// create a bootable fat-partition for a UEFI system.
+    /// Create a bootable FAT partition for a UEFI system.
     pub fn create_uefi_fat_partition(&self, partition_path: &Path) -> anyhow::Result<()> {
         const UEFI_BOOT_FILENAME: &str = "efi/boot/bootx64.efi";
 
