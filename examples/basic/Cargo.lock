@@ -79,9 +79,9 @@ dependencies = [
 
 [[package]]
 name = "bootloader"
-version = "0.11.13"
+version = "0.11.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "269724328c6b8eda6fb9c4f054e1a5937fb27861272dd92a58d06b231f32cd48"
+checksum = "b5fb69232f250c0d5b74eeb285702b4b0479f574980f45dc9bef97b2c65e2021"
 dependencies = [
  "anyhow",
  "bootloader-boot-config",
@@ -95,18 +95,18 @@ dependencies = [
 
 [[package]]
 name = "bootloader-boot-config"
-version = "0.11.13"
+version = "0.11.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8695f73dcd0377cabbc64df31924b92456fde56cb9c2ae217da242e3235a1564"
+checksum = "10a5e475c13d3d988e105b76b92aeea94614c12590c33495165c02b16e895375"
 dependencies = [
  "serde",
 ]
 
 [[package]]
 name = "bootloader_api"
-version = "0.11.13"
+version = "0.11.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9af2881e494cfadbfd715dc4dd0cd8ff1f3bab70bed96385da250b392f4d91fc"
+checksum = "5c074a3d1075b26ed77e502d6af8ab1263abbdc3d026c166e46480f973287293"
 
 [[package]]
 name = "bumpalo"
@@ -202,7 +202,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "39cab71617ae0d63f51a36d69f866391735b51691dbda63cf6f96d042b63efeb"
 dependencies = [
  "libc",
- "windows-sys 0.61.2",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -520,7 +520,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys",
- "windows-sys 0.61.2",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -698,7 +698,7 @@ dependencies = [
  "getrandom 0.3.4",
  "once_cell",
  "rustix",
- "windows-sys 0.61.2",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -900,15 +900,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f2f500e4d28234f72040990ec9d39e3a6b950f9f22d3dba18416c35882612bcb"
 dependencies = [
  "windows-targets 0.53.5",
-]
-
-[[package]]
-name = "windows-sys"
-version = "0.61.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ae137229bcbd6cdf0f7b80a31df61766145077ddf49416a728b02cb3921ff3fc"
-dependencies = [
- "windows-link",
 ]
 
 [[package]]
