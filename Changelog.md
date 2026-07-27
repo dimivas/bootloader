@@ -1,5 +1,12 @@
 # Unreleased
 
+# 0.11.17 - 2026-07-27
+
+* [Revert `uart_16550` version bump to 0.6.0](https://github.com/rust-osdev/bootloader/pull/575)
+* [Fix `workspace.exclude` in `Cargo.toml`](https://github.com/rust-osdev/bootloader/pull/571)
+
+**Full Changelog**: https://github.com/rust-osdev/bootloader/compare/v0.11.16...v0.11.17
+
 # 0.11.16 - 2026-07-18
 
 This release is compatible with Rust nightlies starting with `nightly-2026-07-06`.
