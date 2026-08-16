@@ -1,8 +1,10 @@
-use crate::{framebuffer::FrameBufferWriter, serial::SerialPort};
+use crate::framebuffer::FrameBufferWriter;
 use bootloader_api::info::FrameBufferInfo;
 use conquer_once::spin::OnceCell;
 use core::fmt::Write;
 use spinning_top::Spinlock;
+use uart_16550::backend::PioBackend;
+use uart_16550::{Config, Uart16550Tty};
 
 /// The global logger instance used for the `log` crate.
 pub static LOGGER: OnceCell<LockedLogger> = OnceCell::uninit();
@@ -10,7 +12,7 @@ pub static LOGGER: OnceCell<LockedLogger> = OnceCell::uninit();
 /// A logger instance protected by a spinlock.
 pub struct LockedLogger {
     framebuffer: Option<Spinlock<FrameBufferWriter>>,
-    serial: Option<Spinlock<SerialPort>>,
+    serial: Option<Spinlock<Uart16550Tty<PioBackend>>>,
 }
 
 impl LockedLogger {
@@ -27,7 +29,17 @@ impl LockedLogger {
         };
 
         let serial = match serial_logger_status {
-            true => Some(Spinlock::new(unsafe { SerialPort::init() })),
+            true => {
+                // SAFETY: We have exclusive access to the device.
+                //
+                // This returns `None` if the config is invalid or the self-test fails.
+                // We do not panic here because we want to continue booting.
+                unsafe {
+                    Uart16550Tty::new_port(0x3f8, Config::default())
+                        .ok()
+                        .map(Spinlock::new)
+                }
+            }
             false => None,
         };
 

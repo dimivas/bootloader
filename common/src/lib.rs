@@ -34,8 +34,6 @@ pub mod level_4_entries;
 pub mod load_kernel;
 /// Provides a logger that logs output as text in various formats.
 pub mod logger;
-/// Provides a type that logs output as text to a Serial Being port.
-pub mod serial;
 
 const PAGE_SIZE: u64 = 4096;
 
