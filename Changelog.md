@@ -1,5 +1,10 @@
 # Unreleased
 
+- When booting on UEFI, whatever is written to the UEFI console
+  (e.g., via the SIMPLE_TEXT_OUTPUT_PROTOCOL) is no longer replicated to the
+  serial device. The bootloader's own logger now takes full ownership of the
+  serial device, ensuring safe and reliable logging.
+
 # 0.11.17 - 2026-07-27
 
 * [Revert `uart_16550` version bump to 0.6.0](https://github.com/rust-osdev/bootloader/pull/575)

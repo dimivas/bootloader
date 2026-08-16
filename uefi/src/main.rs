@@ -10,10 +10,12 @@ use bootloader_x86_64_common::{
 };
 use core::net::Ipv4Addr;
 use core::{ptr, slice};
+use uefi::boot::SearchType;
 use uefi::mem::memory_map::{MemoryMap, MemoryMapMut};
+use uefi::proto::console::serial::Serial;
 use uefi::table::cfg::ConfigTableEntry;
 use uefi::{
-    CStr8, CStr16, boot,
+    CStr8, CStr16, Identify, boot,
     boot::{AllocateType, MemoryType},
     cstr8, cstr16,
     prelude::{Status, entry},
@@ -395,6 +397,13 @@ fn init_logger(config: &BootConfig) -> Option<RawFrameBufferInfo> {
         stride: mode_info.stride(),
     };
 
+    // Disconnect the UEFI console from the serial device.
+    // Our own logger takes full ownership of the serial device.
+    if let Ok(handles) = boot::locate_handle_buffer(SearchType::ByProtocol(&Serial::GUID)) {
+        for handle in handles.iter() {
+            let _ = boot::disconnect_controller(*handle, None, None);
+        }
+    };
     bootloader_x86_64_common::init_logger(
         slice,
         info,
