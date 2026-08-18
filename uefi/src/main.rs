@@ -403,7 +403,7 @@ fn init_logger(config: &BootConfig) -> Option<RawFrameBufferInfo> {
         for handle in handles.iter() {
             let _ = boot::disconnect_controller(*handle, None, None);
         }
-    };
+    }
     bootloader_x86_64_common::init_logger(
         slice,
         info,
